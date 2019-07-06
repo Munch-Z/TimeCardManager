@@ -54,6 +54,5 @@ function getData() {
 }
 
 submitBtn.addEventListener('click', (e) =>{
-    e.preventDefault();
     getData();
 });
