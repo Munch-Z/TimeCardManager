@@ -1,13 +1,6 @@
 # TimeCardManager
 In Class Project Time Cards
 
-# employee
-## employee__name
-## employee__role
-## employee__worked
-## employee__rate
-## employee__billed
-
 
 
 # employeeForm

@@ -11,5 +11,35 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-const database = firbase.database();
+const database = firebase.database();
 
+let newEmployee = database.push();
+
+newEmployee.set({
+    test: "did this work?",
+    test2: "lets find out"
+})
+
+const employeeBody = document.getElementById('employees__list');
+
+const submitBtn = document.getElementById('employeeForm__submit');
+
+function getData() {
+    const employeeBody = document.getElementById('employees__list');
+    const name = document.getElementById('employeeForm__name').value;
+    const role = document.getElementById('employeeForm__role').value;
+    const hireDate = document.getElementById('employeeForm__date').value;
+    const payRate = document.getElementById('employeeForm__rate').value;
+
+    let tableRow = document.createElement('tr');
+
+    tableRow.innerHTML = `<td scope="col">${name}</td><td scope="col">${role}</td><td scope="col">${hireDate}</td><td scope="col">${payRate}</td><td scope="col">${totalPayed}</td>`
+
+    employeeBody.appendChild(tableRow);
+    newEmployee.set({
+        test: "did this work?",
+        test2: "lets find out"
+    })
+}
+
+submitBtn.addEventListener('click', getData);
