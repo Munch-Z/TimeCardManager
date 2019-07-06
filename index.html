@@ -14,8 +14,85 @@
         <link rel="stylesheet" href="assets/css/styles.css" />
     </head>
     <body>
-        <header></header>
-        <main></main>
+        <header>
+            <div class="container">
+                <div class="jumbotron">
+                    <h1 class="display-4">Employee Data Managment</h1>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="container">
+                <div class="card mb-5">
+                    <div class="card-header">
+                        <h5 class="card-title">Current Employees</h5>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Employee Name</th>
+                                    <th scope="col">Role</th>
+                                    <th scope="col">Start Date</th>
+                                    <th scope="col">Months Worked</th>
+                                    <th scope="col">Monthly Rate ($)</th>
+                                    <th scope="col">Total Billed ($)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="employees__list"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Add Employee</h5>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="formg-group mb-3">
+                                <label for="name">Name</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="employeeForm__name"
+                                    placeholder="Joe Schmo"
+                                />
+                            </div>
+                            <div class="formg-group mb-3">
+                                <label for="role">Role</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="employeeForm__role"
+                                    placeholder="Dirtbag"
+                                />
+                            </div>
+                            <div class="formg-group mb-3">
+                                <label for="date">Start Date</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="employeeForm__date"
+                                    placeholder="4/20/1969"
+                                />
+                            </div>
+                            <div class="formg-group mb-3">
+                                <label for="rate">Monthly Rate</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="employeeForm__rate"
+                                    placeholder="1,000,000"
+                                />
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                Submit
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
         <footer></footer>
         <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script>
         <script src="assets/js/timecard.js"></script>
