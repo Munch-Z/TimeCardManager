@@ -12,9 +12,6 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
-
-
-
 const submitBtn = document.getElementById('employeeForm__submit');
 
 database.ref().on('child_added', function(snapshot){
@@ -23,7 +20,18 @@ database.ref().on('child_added', function(snapshot){
     const employeeBody = document.getElementById('employees__list');    
     const tableRow = document.createElement('tr');
 
-    tableRow.innerHTML = `<td scope="col">${value.name}</td><td scope="col">${value.role}</td><td scope="col">${value.hireDate}</td><td scope="col">${value.payRate}</td>`
+    const momentHired = moment(value.hireDate, 'MM/DD/YYYY');
+    const currentDay = moment();
+
+    const monthsWorked = currentDay.diff(momentHired, 'months');
+
+    tableRow.innerHTML = `
+    <td scope="col">${value.name}</td>
+    <td scope="col">${value.role}</td>
+    <td scope="col">${value.hireDate}</td>
+    <td scope="col">${monthsWorked}</td>
+    <td scope="col">${value.payRate}</td>
+    <td scope="col">${parseInt(value.payRate) * monthsWorked}</td>`
 
     employeeBody.appendChild(tableRow);
     
@@ -46,5 +54,6 @@ function getData() {
 }
 
 submitBtn.addEventListener('click', (e) =>{
+    e.preventDefault();
     getData();
 });
