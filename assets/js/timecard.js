@@ -13,33 +13,39 @@ firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
 
-let newEmployee = database.push();
-
-newEmployee.set({
-    test: "did this work?",
-    test2: "lets find out"
-})
+let newEmployee = database.ref().push();
 
 const employeeBody = document.getElementById('employees__list');
 
 const submitBtn = document.getElementById('employeeForm__submit');
 
+database.ref().on('child_added', function(snapshot){
+    value = snapshot.val();
+
+    let tableRow = document.createElement('tr');
+
+    tableRow.innerHTML = `<td scope="col">${value.name}</td><td scope="col">${value.role}</td><td scope="col">${value.hireDate}</td><td scope="col">${value.payRate}</td>`
+
+    employeeBody.appendChild(tableRow);
+    
+})
+
 function getData() {
+    console.log('I worked');
     const employeeBody = document.getElementById('employees__list');
     const name = document.getElementById('employeeForm__name').value;
     const role = document.getElementById('employeeForm__role').value;
     const hireDate = document.getElementById('employeeForm__date').value;
     const payRate = document.getElementById('employeeForm__rate').value;
-
-    let tableRow = document.createElement('tr');
-
-    tableRow.innerHTML = `<td scope="col">${name}</td><td scope="col">${role}</td><td scope="col">${hireDate}</td><td scope="col">${payRate}</td><td scope="col">${totalPayed}</td>`
-
-    employeeBody.appendChild(tableRow);
+    
     newEmployee.set({
-        test: "did this work?",
-        test2: "lets find out"
+        name: name,
+        role: role,
+        hireDate: hireDate,
+        payRate: payRate
     })
 }
 
-submitBtn.addEventListener('click', getData);
+submitBtn.addEventListener('click', (e) =>{
+    getData();
+});
