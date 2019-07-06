@@ -13,16 +13,15 @@ firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
 
-let newEmployee = database.ref().push();
 
-const employeeBody = document.getElementById('employees__list');
 
 const submitBtn = document.getElementById('employeeForm__submit');
 
 database.ref().on('child_added', function(snapshot){
     value = snapshot.val();
-
-    let tableRow = document.createElement('tr');
+    
+    const employeeBody = document.getElementById('employees__list');    
+    const tableRow = document.createElement('tr');
 
     tableRow.innerHTML = `<td scope="col">${value.name}</td><td scope="col">${value.role}</td><td scope="col">${value.hireDate}</td><td scope="col">${value.payRate}</td>`
 
@@ -31,12 +30,12 @@ database.ref().on('child_added', function(snapshot){
 })
 
 function getData() {
-    console.log('I worked');
-    const employeeBody = document.getElementById('employees__list');
     const name = document.getElementById('employeeForm__name').value;
     const role = document.getElementById('employeeForm__role').value;
     const hireDate = document.getElementById('employeeForm__date').value;
     const payRate = document.getElementById('employeeForm__rate').value;
+    
+    const newEmployee = database.ref().push();
     
     newEmployee.set({
         name: name,
